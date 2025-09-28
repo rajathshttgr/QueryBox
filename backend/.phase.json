@@ -1,0 +1,8 @@
+{
+  "version": "2",
+  "phaseApp": "QueryBox",
+  "appId": "96719f0a-722a-4e6d-b33e-8430d599e6cb",
+  "defaultEnv": "Development",
+  "envId": "0d37ed70-38bf-40ca-95bb-3f98e51c5fd4",
+  "monorepoSupport": true
+}
