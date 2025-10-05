@@ -2,6 +2,7 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import Button from "@/components/Button";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -18,8 +19,17 @@ const Home = () => {
       </h1>
       <p className="text-xl text-center text-neutral-800 dark:text-neutral-200 transition-colors duration-100">
         Transform your documents into intelligent conversations. Upload PDFs,
-        text, or URLs and chat with your content instantly.
+        Texts, or URLs and chat with your content instantly.
       </p>
+      <div className="mt-8">
+        <Link href="/chat">
+          <Button
+            text="Get Started"
+            variant="special"
+            icon={<FaArrowCircleRight className="text-lg" />}
+          />
+        </Link>
+      </div>
     </div>
   );
 };

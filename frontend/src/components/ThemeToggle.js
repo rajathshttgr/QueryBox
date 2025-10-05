@@ -24,7 +24,9 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full transition-colors duration-300 ease-in-out group"
+      className={`p-2 rounded-full transition-colors duration-300 ease-in-out group ${
+        isDark ? "hover:bg-neutral-600" : "hover:bg-neutral-200"
+      }`}
     >
       <div className="relative w-4 h-4">
         <SunIcon

@@ -28,7 +28,7 @@ export default function GoogleCallbackPage() {
 
         if (data?.access_token) {
           localStorage.setItem("access_token", data.access_token);
-          router.replace("/console");
+          router.replace("/chat");
         } else {
           router.replace("/login");
         }
