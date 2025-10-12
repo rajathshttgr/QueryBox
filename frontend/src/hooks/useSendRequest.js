@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -26,7 +25,7 @@ const useSendRequest = () => {
         {},
         { withCredentials: true }
       );
-      const { access_token } = response.data;
+      const { access_token } = response.data.access_token;
       localStorage.setItem("access_token", access_token);
       return access_token;
     } catch (err) {
@@ -66,10 +65,9 @@ const useSendRequest = () => {
           ...headers,
         },
         data: body,
-        withCredentials: !isAuthRoute,
+        withCredentials: true,
       };
 
-      // ✅ Let browser set correct headers if using FormData
       if (!(body instanceof FormData)) {
         config.headers["Content-Type"] = "application/json";
       }
