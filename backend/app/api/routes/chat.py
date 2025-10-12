@@ -55,7 +55,7 @@ def chat_message(
 
         bot_message = Messages(
             chat_id=chat_id,
-            sender="QueryBox Bot",
+            sender="QueryBox-Bot",
             content=llm_response_text or "No response generated."
         )
 
@@ -82,6 +82,7 @@ def read_chat(chat_id: UUID, current_user: User = Depends(get_current_user), db:
         raise HTTPException(status_code=404, detail="Chat not found")
     return chat
 
+
 @router.delete("/{chat_id}",status_code=status.HTTP_204_NO_CONTENT)
 def delete_chat(chat_id: UUID, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
     chat = db.query(Chats).filter(Chats.id == chat_id, Chats.user_id == current_user.id).first()
@@ -105,3 +106,20 @@ def chat_history(current_user: User = Depends(get_current_user), db: Session = D
         raise HTTPException(status_code=404, detail="Chat history not found")
 
     return [{"id": c.id, "chat_title": c.chat_title} for c in chats_summary]
+
+@router.put("/{chat_id}",response_model=ChatResponse)
+def read_chat(chat_id: UUID, chat_update: ChatCreate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    chat = (
+        db.query(Chats)
+        .filter(Chats.id == chat_id, Chats.user_id == current_user.id)
+        .first()
+    )
+    if not chat:
+        raise HTTPException(status_code=404, detail="Chat not found")
+    
+    if chat_update.chat_title:
+        chat.chat_title = chat_update.chat_title
+    db.commit()
+    db.refresh(chat)
+    return chat
+

@@ -47,7 +47,7 @@ const Login = () => {
         isAuthRoute: true,
       });
       localStorage.setItem("access_token", data.access_token);
-      router.push("/console");
+      router.push("/chat");
     } catch (err) {
       console.error("Failed to login:", err);
     }
@@ -61,10 +61,10 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8 p-8 bg-neutral-50 dark:bg-neutral-800 rounded-xl shadow-md transition-colors duration-300">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">
-            Log into FullStack Template
+            Log into QueryBox
           </h2>
           <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-            Build smarter, ship faster with FullStack Web App Template
+            Transform your documents into intelligent conversations
           </p>
         </div>
 

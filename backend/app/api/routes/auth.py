@@ -59,7 +59,7 @@ def register(user_create: UserCreate, response: Response, db: Session = Depends(
         value=refresh_token_raw,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
-        secure=False,  # Set True in production with HTTPS
+        secure=True,  # Set True in production with HTTPS
         samesite="none"
     )
 
@@ -175,6 +175,7 @@ def refresh_token(response: Response, request: Request, db: Session = Depends(ge
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
         secure=True, # Set True in production with HTTPS
+        path="/",
         samesite="none"
     )
 
@@ -235,6 +236,7 @@ def google_login(google_auth: GoogleAuth, response: Response, db: Session=Depend
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
         secure=True,  # Set True in production with HTTPS
+        path="/",
         samesite="none"
     )
 
