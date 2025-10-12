@@ -25,6 +25,28 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2e2e2e #0a0a0a;
+}
+
 body {
   @apply transition-colors duration-300 ease-in-out;
   background: var(--background);

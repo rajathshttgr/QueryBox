@@ -27,7 +27,7 @@ const Button = ({
       "font-medium p-4 px-5 rounded-full bg-neutral-200 text-neutral-800 hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 transition-colors duration-200 text-lg",
     rocket: `rounded-full w-8 h-8  flex justify-center items-center ${
       disabled
-        ? "bg-neutral-700 text-neutral-500 hover:bg-neutral-600 "
+        ? "bg-neutral-700 text-neutral-500 hover:bg-neutral-600"
         : "bg-neutral-200 text-neutral-700 "
     }`,
   };

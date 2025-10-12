@@ -2,11 +2,27 @@
 
 A RAG-powered chatbot that retrieves relevant context from diverse sources using a vector database and generates precise, context-aware answers with an LLM
 
-## Project Setup
+## Features
 
-Follow these steps to clone and set up the project.
+- Retrieval-Augmented Generation (RAG) for better answers.
+- PostgreSQL for structured data.
+- Qdrant Vector DB for embeddings.
+- Background processing with Celery + Redis.
+- Google OAuth authentication.
+- OpenAI integration for embeddings and LLM responses.
+- Dockerized for easy setup.
 
 ---
+
+## Requirements
+
+- Python 3.11+
+- PostgreSQL 15+
+- Docker & Docker Compose (for containerized setup)
+
+---
+
+## Setup
 
 ### 1. Clone the Repository
 
@@ -27,7 +43,9 @@ cp .env.example .env
 
 ---
 
-## Quick Start (Docker Compose)
+## Quick Start (Docker)
+
+Run all services in one command:
 
 **Requirements:** Docker & Docker Compose
 
@@ -43,15 +61,19 @@ cp .env.example .env
    docker-compose logs -f
    ```
 
-3. **Access FastAPI:**
+3. **Stop services:**
+
+   ```bash
+   docker-compose down
+   ```
+
+4. **Access FastAPI:**
    - API: [http://localhost:8000](http://localhost:8000)
    - Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## Manual Setup
-
-**Requirements:** Python 3.11+, PostgreSQL 15+
+## Manual Setup (Without Docker)
 
 ### 1. PostgreSQL Setup
 
@@ -105,8 +127,20 @@ uvicorn app.main:app --reload
  celery -A app.core.celery_app.celery_app worker --loglevel=info -P solo
 ```
 
-## connect to db on docker
+## Connect to Databases
 
-```bash
-psql -h localhost -p 5432 -U newuser -d queryboxdb
-```
+**Postgres:** psql -h localhost -p 5432 -U newuser -d queryboxdb
+
+**Qdrant:** http://localhost:6333
+
+**Redis:** redis-cli -h localhost -p 6379
+
+---
+
+## Notes
+
+- Update .env with your Google OAuth and AWS keys.
+
+- For Docker Compose, ensure .env points Postgres, Redis, and Qdrant to container hostnames (postgres, redis, qdrant) instead of localhost.
+
+- Celery tasks are executed in the celery service container.

@@ -41,15 +41,5 @@ export default function GoogleCallbackPage() {
     fetchToken();
   }, [router, sendRequest]);
 
-  return (
-    <div>
-      {loading ? (
-        <LoadingScreen />
-      ) : error ? (
-        "Login failed"
-      ) : (
-        "Logging you in..."
-      )}
-    </div>
-  );
+  return <div>{loading ? <LoadingScreen /> : ""}</div>;
 }

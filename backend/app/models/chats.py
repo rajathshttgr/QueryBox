@@ -15,7 +15,7 @@ class Chats(Base):
     chat_title = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    messages = relationship("Messages", back_populates="chat", cascade="all, delete-orphan")
+    messages = relationship("Messages", back_populates="chat", cascade="all, delete-orphan", order_by="Messages.created_at")
 
 
 class Messages(Base):

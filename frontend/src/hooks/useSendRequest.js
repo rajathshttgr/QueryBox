@@ -63,12 +63,16 @@ const useSendRequest = () => {
         method,
         url,
         headers: {
-          "Content-Type": "application/json",
           ...headers,
         },
         data: body,
         withCredentials: !isAuthRoute,
       };
+
+      // ✅ Let browser set correct headers if using FormData
+      if (!(body instanceof FormData)) {
+        config.headers["Content-Type"] = "application/json";
+      }
 
       if (!isAuthRoute && accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
