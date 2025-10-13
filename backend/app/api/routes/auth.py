@@ -59,8 +59,9 @@ def register(user_create: UserCreate, response: Response, db: Session = Depends(
         value=refresh_token_raw,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
-        secure=True,  # Set True in production with HTTPS
-        samesite="none"
+        secure=False,  # Set True in production with HTTPS          
+        samesite="none",            
+        path="/",
     )
 
     return {
@@ -96,8 +97,9 @@ def login(user_login: UserLogin, response: Response, db: Session = Depends(get_d
         value=refresh_token_raw,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
-        secure=True, # Set True in production with HTTPS
-        samesite="none"
+        secure=False,  # Set True in production with HTTPS          
+        samesite="none",            
+        path="/",
     )
 
     return {
@@ -121,8 +123,8 @@ def logout(response: Response,db: Session=Depends(get_db), current_user: User = 
     response.delete_cookie(
         key="refresh_token",
         httponly=True,
-        samesite="lax",
-        secure=True  # Set True in production with HTTPS
+        samesite="none",
+        secure=False  # Set True in production with HTTPS
     )
 
     return {"detail": "Logged out successfully"}
@@ -171,12 +173,12 @@ def refresh_token(response: Response, request: Request, db: Session = Depends(ge
 
     response.set_cookie(
         key="refresh_token",
-        value=new_refresh_token_raw,
+        value=refresh_token_raw,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
-        secure=True, # Set True in production with HTTPS
+        secure=False,  # Set True in production with HTTPS          
+        samesite="none",            
         path="/",
-        samesite="none"
     )
 
     return {
@@ -235,9 +237,9 @@ def google_login(google_auth: GoogleAuth, response: Response, db: Session=Depend
         value=refresh_token_raw,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 60 * 60,
-        secure=True,  # Set True in production with HTTPS
+        secure=False,  # Set True in production with HTTPS          
+        samesite="none",            
         path="/",
-        samesite="none"
     )
 
     return {
