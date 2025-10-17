@@ -4,6 +4,12 @@ A RAG-powered chatbot that retrieves relevant context from diverse sources using
 
 ---
 
+## Demo
+
+- Watch the demo recording: [https://www.loom.com/share/ea8a35c957784b0280f09998dfe10346](https://www.loom.com/share/ea8a35c957784b0280f09998dfe10346)
+
+- Screenshots of the app are available in the [img](./img) folder.
+
 ## Features
 
 - **Upload multiple documents:** Select and query any uploaded document.
@@ -46,18 +52,18 @@ From the root of the repository:
 
 1. **Build all services:**
    `bash
-    docker-compose build
-    `
+docker-compose build
+`
 
 2. **Start all services in detached mode:**
    `bash
-    docker-compose up -d
-    `
+docker-compose up -d
+`
 
 3. **Verify running containers:**
    `bash
-    docker ps
-    `
+docker ps
+`
 
 You should see containers for:
 
@@ -71,13 +77,13 @@ You should see containers for:
 
 - **Stop all containers:**
   `bash
-      docker-compose down
-      `
+docker-compose down
+`
 
 - **Stop and remove containers, networks, and volumes:**
   `bash
-      docker-compose down -v
-      `
+docker-compose down -v
+`
 
 ---
 
