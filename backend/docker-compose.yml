@@ -26,6 +26,7 @@ services:
       - redis
       - postgres
       - api
+    restart: on-failure
 
   postgres:
     image: postgres:15

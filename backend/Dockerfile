@@ -36,6 +36,5 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload
 # # Expose port
 # EXPOSE 8000
 
-# # Production command using Gunicorn
+# # Production command
 # CMD ["gunicorn", "app.main:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
-
