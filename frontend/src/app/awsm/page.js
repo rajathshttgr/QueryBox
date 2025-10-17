@@ -8,7 +8,8 @@ const MagicPin = () => {
   axios.defaults.withCredentials = true;
   const register = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/auth/login`, {
+      const response = await axios.post(`http://127.0.0.1:8000/auth/register`, {
+        name: "Rajath Shettigar Test",
         email: "rj1210@example.com",
         password: "pass1234",
       });

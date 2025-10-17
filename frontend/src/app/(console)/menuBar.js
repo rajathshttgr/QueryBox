@@ -21,6 +21,7 @@ const MenuBar = ({ closeSidebar }) => {
   const [activeChatId, setActiveChatId] = useState(null);
   const [editingChatId, setEditingChatId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
+  const [userProfile, setUserProfile] = useState("Example User");
   const router = useRouter();
   const pathname = usePathname();
   const debounceTimer = useRef(null);
@@ -44,8 +45,22 @@ const MenuBar = ({ closeSidebar }) => {
     }
   };
 
+  const fetchUserProfile = async () => {
+    try {
+      const data = await sendRequest({
+        route: "user/profile",
+        method: "GET",
+        isAuthRoute: false,
+      });
+      setUserProfile(data?.name);
+    } catch (err) {
+      console.error("Error fetching User Profile:", err);
+    }
+  };
+
   useEffect(() => {
     fetchUserData();
+    fetchUserProfile();
   }, [pathname]);
 
   const deleteChat = async (chatid) => {
@@ -219,7 +234,7 @@ const MenuBar = ({ closeSidebar }) => {
         onClick={() => router.push("/profile/")}
       >
         <div className="w-8 h-8 rounded-full bg-neutral-600"></div>
-        <span className="text-sm">Rajath Shettigar</span>
+        <span className="text-sm">{userProfile}</span>
       </div>
     </div>
   );
