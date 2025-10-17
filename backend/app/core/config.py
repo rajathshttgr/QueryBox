@@ -7,7 +7,14 @@ class Settings(BaseSettings):
     GOOGLE_REDIRECT_URI: str
     CORS_ORIGINS: str
     
-    DATABASE_URL: str
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+    POSTGRES_PORT: int
+    POSTGRES_SERVER_LOCAL: str
+    POSTGRES_SERVER_DOCKER: str
+    ENVIRONMENT: str = "local" # local or docker
+
     SECRET_KEY: str
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
@@ -18,14 +25,14 @@ class Settings(BaseSettings):
     AWS_REGION:str
     BUCKET_NAME:str
 
-    REDIS_HOST: str
-    REDIS_PORT: int
+    REDIS_HOST: str = "localhost"
+    REDIS_PORT: int = 6379
 
     OPENAI_API_KEY: str
     EMBEDDING_MODEL: str
 
-    QDRANT_HOST: str
-    QDRANT_PORT: int
+    QDRANT_HOST: str = "localhost"
+    QDRANT_PORT: int = 6333
 
     class Config:
         """
