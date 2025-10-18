@@ -51,19 +51,13 @@ QueryBox uses Docker Compose to run the frontend, backend, and required services
 From the root of the repository:
 
 1. **Build all services:**
-   `bash
-docker-compose build
-`
+   `docker-compose build`
 
 2. **Start all services in detached mode:**
-   `bash
-docker-compose up -d
-`
+   `docker-compose up -d`
 
 3. **Verify running containers:**
-   `bash
-docker ps
-`
+   `docker ps`
 
 You should see containers for:
 
@@ -76,14 +70,10 @@ You should see containers for:
 ## Stop and Remove
 
 - **Stop all containers:**
-  `bash
-docker-compose down
-`
+  `docker-compose down`
 
 - **Stop and remove containers, networks, and volumes:**
-  `bash
-docker-compose down -v
-`
+  `docker-compose down -v`
 
 ---
 
