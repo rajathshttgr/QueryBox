@@ -44,7 +44,16 @@ QueryBox uses Docker Compose to run the frontend, backend, and required services
 - Docker (>= 24.x)
 - Docker Compose (included with Docker Desktop)
 
----
+## Environment setup
+
+Before running Docker, copy each directory's .env.example to .env and set required variables.
+
+Commands (run from repo root):
+
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
 
 ## Build and Run
 
