@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     POSTGRES_PORT: int
     POSTGRES_SERVER_LOCAL: str
     POSTGRES_SERVER_DOCKER: str
+    DATABASE_URL:str
     ENVIRONMENT: str = "local" # local or docker
 
     SECRET_KEY: str
@@ -27,12 +28,15 @@ class Settings(BaseSettings):
 
     REDIS_HOST: str = "localhost"
     REDIS_PORT: int = 6379
+    REDIS_URL: str
 
     OPENAI_API_KEY: str
     EMBEDDING_MODEL: str
 
     QDRANT_HOST: str = "localhost"
     QDRANT_PORT: int = 6333
+    QDRANT_URL: str
+    QDRANT_API_KEY: str
 
     class Config:
         """

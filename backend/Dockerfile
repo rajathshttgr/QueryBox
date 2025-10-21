@@ -1,40 +1,40 @@
-# For Dev
-FROM python:3.11-slim
+# # For Dev
+# FROM python:3.11-slim
 
-# Set work directory
-WORKDIR /app
+# # Set work directory
+# WORKDIR /app
 
-# Install dependencies first (cache this layer)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# # Install dependencies first (cache this layer)
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the FastAPI app code (volume will override this in dev)
-COPY . .
+# # Copy the FastAPI app code (volume will override this in dev)
+# COPY . .
 
-# Expose FastAPI port
-EXPOSE 8000
+# # Expose FastAPI port
+# EXPOSE 8000
 
-# Default command (can be overridden by docker-compose)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# # Default command (can be overridden by docker-compose)
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
 
 
 
 # For Production
 
-# FROM python:3.11-slim
+FROM python:3.11-slim
 
-# WORKDIR /app
+WORKDIR /app
 
-# # Install dependencies
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# # Copy app code
-# COPY . .
+# Copy app code
+COPY . .
 
-# # Expose port
-# EXPOSE 8000
+# Expose port
+EXPOSE 8000
 
-# # Production command
-# CMD ["gunicorn", "app.main:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+# Production command
+CMD ["sh", "-c", "gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:${PORT:-8000}"]

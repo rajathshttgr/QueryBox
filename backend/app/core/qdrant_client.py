@@ -6,13 +6,15 @@ from app.core.config import settings
 def is_docker() -> bool:
     return os.path.exists("/.dockerenv") or os.getenv("DOCKER_ENV") == "1"
 
-qdrant_host = "qdrant" if is_docker() else settings.QDRANT_HOST
-qdrant_port = settings.QDRANT_PORT
+QDRANT_URL = settings.QDRANT_URL
+QDRANT_API_KEY = settings.QDRANT_API_KEY
 
-qdrant_client = QdrantClient(
-    host=qdrant_host,
-    port=qdrant_port
-)
+if QDRANT_URL:
+    qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
+else:
+    qdrant_host = "qdrant" if is_docker() else settings.QDRANT_HOST
+    qdrant_port = settings.QDRANT_PORT
+    qdrant_client = QdrantClient(host=qdrant_host, port=qdrant_port)
 
 COLLECTION_NAME = "documents"
 
