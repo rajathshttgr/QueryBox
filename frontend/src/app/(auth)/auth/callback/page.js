@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useSendRequest from "@/hooks/useSendRequest";
-import LoadingScreen from "@/components/Loading";
+import LoadingV2 from "@/components/LoadingV2";
 
 export default function GoogleCallbackPage() {
   const router = useRouter();
@@ -41,5 +41,15 @@ export default function GoogleCallbackPage() {
     fetchToken();
   }, [router, sendRequest]);
 
-  return <div>{loading ? <LoadingScreen /> : ""}</div>;
+  return (
+    <div>
+      {loading ? (
+        <div className="h-screen flex justify-center items-center">
+          <LoadingV2 message="Fetching the latest updates from the server..." />
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  );
 }
