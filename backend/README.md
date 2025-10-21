@@ -49,27 +49,35 @@ Run all services in one command:
 
 **Requirements:** Docker & Docker Compose
 
-1. **Build and run services:**
+1. **Build all services**
 
    ```bash
-   docker-compose up -d --build
+   docker-compose build
    ```
 
-2. **Check logs:**
+2. **Start all services in detached mode:**
+
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Check logs:**
 
    ```bash
    docker-compose logs -f
    ```
 
-3. **Stop services:**
-
-   ```bash
-   docker-compose down
-   ```
-
 4. **Access FastAPI:**
    - API: [http://localhost:8000](http://localhost:8000)
    - Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+## Stop and Remove
+
+- **Stop all containers:**
+  `docker-compose down`
+
+- **Stop and remove containers, networks, and volumes:**
+  `docker-compose down -v`
 
 ---
 

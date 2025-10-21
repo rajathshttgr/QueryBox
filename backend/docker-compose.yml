@@ -3,35 +3,30 @@ version: "3.9"
 services:
   api:
     build: .
-    container_name: fastapi-app
+    container_name: fastapi-app-z
     ports:
       - "8000:8000"
     env_file: .env
-    volumes:
-      - .:/app
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
       - postgres
       - redis
       - qdrant
 
   celery:
-    container_name: celery-worker
     build: .
+    container_name: celery-worker-z
     command: celery -A app.core.celery_app.celery_app worker --loglevel=info -P solo
     env_file: .env
     volumes:
       - .:/app
     depends_on:
       - redis
-      - postgres
       - api
     restart: on-failure
 
   postgres:
     image: postgres:15
-    container_name: postgres-db
-    restart: always
+    container_name: postgres-db-z
     ports:
       - "5432:5432"
     env_file: .env
@@ -40,13 +35,13 @@ services:
 
   redis:
     image: redis:7
-    container_name: redis
+    container_name: redis-z
     ports:
       - "6379:6379"
 
   qdrant:
-    image: qdrant/qdrant:v1.2.1
-    container_name: qdrant
+    image: qdrant/qdrant
+    container_name: qdrant-z
     ports:
       - "6333:6333"
     volumes:
