@@ -43,7 +43,7 @@ const Upload = () => {
     <div className="bg-neutral-900 py-10 h-screen">
       <DragAndDrop onUploadSuccess={fetchDocsList} />
 
-      <div className="flex flex-col px-10 mx-auto">
+      <div className="flex flex-col px-10 mx-auto flex-1 overflow-y-auto">
         {docsList.map((doc) => (
           <div key={doc.id} onClick={() => toggleSelect(doc.id)}>
             <DocumentCard

@@ -1,10 +1,10 @@
 import React from "react";
+import LoadingV2 from "@/components/LoadingV2";
 
 const WebScrap = () => {
   return (
     <div className="h-screen flex justify-center items-center bg-neutral-900">
-      You Can WebScrap website or youtube videos here. We working on It, come
-      back after some times...
+      <LoadingV2 message="This section is under maintenance. Come back after sometimes ..." />
     </div>
   );
 };

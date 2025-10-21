@@ -50,7 +50,9 @@ const Messages = ({ messages }) => {
             </div>
           ) : (
             <div className="flex items-start gap-2 w-full">
-              <div className="bg-neutral-500 rounded-full h-10 w-10 flex-shrink-0" />
+              <div className="bg-neutral-500 rounded-full h-10 w-10 flex-shrink-0 flex justify-center items-center text-lg font-bold">
+                Q
+              </div>
               <div className="relative bg-neutral-800 text-white p-3 rounded-2xl max-w-lg break-words whitespace-pre-wrap shadow flex flex-col">
                 {msg.content === "Generating response..." ? (
                   <TypingDots />
