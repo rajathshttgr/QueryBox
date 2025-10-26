@@ -232,7 +232,10 @@ const MenuBar = ({ closeSidebar }) => {
 
       <div className="p-4 border-t border-neutral-800 flex justify-between items-center ">
         <div
-          onClick={() => router.push("/profile/")}
+          onClick={() => {
+            router.push("/profile/");
+            if (closeSidebar) closeSidebar();
+          }}
           className="flex items-center gap-2 cursor-pointer"
         >
           <div className="w-8 h-8 rounded-full bg-neutral-600 flex justify-center items-center">
@@ -241,7 +244,10 @@ const MenuBar = ({ closeSidebar }) => {
           <span className="text-sm">{userProfile}</span>
         </div>
         <div
-          onClick={() => router.push("/settings/")}
+          onClick={() => {
+            router.push("/settings/");
+            if (closeSidebar) closeSidebar();
+          }}
           className="p-1 hover:bg-neutral-700 rounded-full"
         >
           <Settings className="h-4 w-4 cursor-pointer" />
